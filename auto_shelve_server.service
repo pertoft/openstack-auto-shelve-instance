@@ -1,0 +1,24 @@
+[Unit]
+Description = Auto shelve instance
+After = network-online.target
+After = syslog.target
+
+[Service]
+Type = oneshot
+User = root
+Group = root
+ExecStart = /usr/bin/python3 /opt/openstack-auto-shelve-instance/auto_shelve_server.py
+ExecReload = /bin/kill -HUP $MAINPID
+TimeoutSec = 120
+Slice = system.slice
+CPUAccounting = True
+BlockIOAccounting = True
+MemoryAccounting = True
+TasksAccounting = True
+# Set Sandboxing
+PrivateTmp = False
+PrivateDevices = False
+PrivateNetwork = False
+
+[Install]
+WantedBy = multi-user.target

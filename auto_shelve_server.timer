@@ -1,0 +1,10 @@
+
+[Unit]
+Description=Auto shelve instance
+[Timer]
+OnCalendar=daily
+Persistent=True
+Unit=auto_shelve_server.service
+
+[Install]
+WantedBy=multi-user.target
